@@ -1,0 +1,15 @@
+# Dependency directories
+node_modules/
+
+# Environment files - NEVER COMMIT SECRETS
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# Database temporary storage
+data/
+.mongo-binaries/

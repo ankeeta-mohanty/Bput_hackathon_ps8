@@ -1,0 +1,26 @@
+{
+  "name": "corporate-esg-reporting-portal",
+  "version": "1.0.0",
+  "description": "Centralized BRSR & Sustainability Data Management Portal Prototype",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n \"backend,frontend\" -c \"blue,teal\" \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "start:backend": "npm --prefix backend start",
+    "build:frontend": "npm --prefix frontend run build",
+    "seed": "npm --prefix backend run seed",
+    "test": "npm --prefix backend test"
+  },
+  "keywords": [
+    "esg",
+    "brsr",
+    "sustainability",
+    "sebi",
+    "reporting",
+    "portal"
+  ],
+  "devDependencies": {
+    "concurrently": "^10.0.5"
+  }
+}
