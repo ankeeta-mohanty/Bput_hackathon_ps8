@@ -4,6 +4,9 @@ const morgan = require('morgan');
 
 const healthRoutes = require('./routes/healthRoutes');
 const siteRoutes = require('./routes/siteRoutes');
+const authRoutes = require('./routes/authRoutes');
+const submissionRoutes = require('./routes/submissionRoutes');
+const analyticsRoutes = require('./routes/analyticsRoutes');
 
 const app = express();
 
@@ -22,8 +25,11 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 // API Routes
+app.use('/api/auth', authRoutes);
 app.use('/api/health', healthRoutes);
 app.use('/api/sites', siteRoutes);
+app.use('/api/submissions', submissionRoutes);
+app.use('/api/analytics', analyticsRoutes);
 
 // Root fallback route
 app.get('/', (req, res) => {

@@ -1,8 +1,10 @@
 const express = require('express');
-const router = express.Router();
 const { getSites } = require('../controllers/siteController');
+const { requireAuth } = require('../middleware/auth');
 
-// GET /api/sites
-router.get('/', getSites);
+const router = express.Router();
+
+// GET /api/sites is now secured by RBAC
+router.get('/', requireAuth, getSites);
 
 module.exports = router;

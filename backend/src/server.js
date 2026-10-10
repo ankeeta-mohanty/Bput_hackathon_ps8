@@ -1,4 +1,5 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const http = require('http');
 const app = require('./app');
 const { connectDB, disconnectDB } = require('./config/db');
@@ -17,15 +18,23 @@ server.on('error', (err) => {
   }
 });
 
+// Validate required authentication environment variables
+if (!process.env.JWT_SECRET || process.env.JWT_SECRET.trim() === '') {
+  console.error('[Configuration Error] Missing required JWT_SECRET in environment variables.');
+  console.error('[Configuration Error] Please define JWT_SECRET in your .env file.');
+  process.exit(1);
+}
+
 const startServer = async () => {
   // Initialize MongoDB connection
   await connectDB();
 
   server.listen(PORT, () => {
     console.log(`====================================================`);
-    console.log(`ESG Reporting Portal Backend (Phase 1)`);
+    console.log(`ESG Reporting Portal Backend (Phase 2 - Auth & RBAC)`);
     console.log(`Server listening on: http://localhost:${PORT}`);
     console.log(`Health Check:        http://localhost:${PORT}/api/health`);
+    console.log(`Auth API:            http://localhost:${PORT}/api/auth/login`);
     console.log(`Sites API:           http://localhost:${PORT}/api/sites`);
     console.log(`Environment:         ${process.env.NODE_ENV || 'development'}`);
     console.log(`====================================================`);

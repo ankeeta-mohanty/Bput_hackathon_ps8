@@ -14,6 +14,16 @@ const groupSchema = new mongoose.Schema(
       trim: true,
       uppercase: true,
     },
+    provenance: {
+      sourceType: {
+        type: String,
+        enum: ['official_corporate_filing', 'authorized_site_register', 'sample_seed_unverified'],
+        default: 'sample_seed_unverified',
+      },
+      verified: { type: Boolean, default: false },
+      sourceReference: { type: String, default: 'Prototype Seed Dataset' },
+      verifiedAt: { type: Date, default: null },
+    },
   },
   {
     timestamps: true,

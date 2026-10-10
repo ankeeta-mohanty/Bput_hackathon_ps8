@@ -20,6 +20,8 @@ const getHealthStatus = (req, res) => {
       databaseHost: dbStatus.host,
       databasePort: dbStatus.port,
       databaseName: dbStatus.name,
+      databaseMode: dbStatus.mode,
+      persistenceType: dbStatus.persistence,
       readyState: dbStatus.state,
     },
   };

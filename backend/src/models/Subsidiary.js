@@ -19,6 +19,16 @@ const subsidiarySchema = new mongoose.Schema(
       ref: 'Group',
       required: [true, 'Subsidiary must belong to a Group'],
     },
+    provenance: {
+      sourceType: {
+        type: String,
+        enum: ['official_corporate_filing', 'authorized_site_register', 'sample_seed_unverified'],
+        default: 'sample_seed_unverified',
+      },
+      verified: { type: Boolean, default: false },
+      sourceReference: { type: String, default: 'Prototype Seed Dataset' },
+      verifiedAt: { type: Date, default: null },
+    },
   },
   {
     timestamps: true,
